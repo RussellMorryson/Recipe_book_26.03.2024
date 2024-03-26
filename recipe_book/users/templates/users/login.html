@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Добро пожаловать!
+{% endblock %}
+
+{% block content %}
+<br><br>
+<p> {{ msg }} </p>
+<h1>Авторизация</h1>
+
+<p style="background-color: green; color: black;">{{ msg }}</p>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit" style="border-radius: 10px;">Войти</button></p>    
+</form>
+<br>
+
+<button style="border-radius: 15px; background-color: green;">
+<a href = "{% url 'registration' %}" style="color: white; text-decoration: none;"> Регистрация</a>
+</button>
+ 
+{% endblock %}

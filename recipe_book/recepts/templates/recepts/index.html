@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
+        <title> Книга рецептов </title>
+    </head>
+
+    <body>
+        <header>
+            <div class = "logo" style="text-align: center">
+                <h1 style="size: 20px">Книга рецептов</h1>
+                <h5> Recipe book</h5>
+            </div>
+            {% if user == '' %}  
+                <div class = "login">
+                    <button style="border-radius: 10px; background-color: green;">
+                        <a href="{% url 'login_user' %}" class="nav-link" style="color:white; text-decoration: none;"> Войти </a>
+                    </button>
+                </div>
+            {% else %}
+                <div class = "user" style="text-align: right">
+                    <p>Логин: {{ user }} </p>
+                </div>
+                <div class = "exit">
+                    <button style="border-radius: 15px;">
+                        <a href="{% url 'logout_user' %}" class="nav-link" style="text-decoration: none;"> Выйти </a>
+                    </button>
+                </div>
+            {% endif %}
+        </header>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+            <table>
+                {% for key, value in recepts.items %}
+                    <h3>{{ value.name }}</h3>
+                    <p> {{ value.description }} </p>
+                    <p> Порядок действий: {{ value.steps }} </p>
+                    <p> Ингредиенты: {{ value.steps }} </p>
+                    <p> Время выполнения: {{ value.time }} </p>
+                    {{ value.image }}
+                    <p> Автор: {{ value.author }}</p>
+                {% endfor %}
+            </table>
+            
+        </div>
+    </body>
+    <footer>
+        <h5>
+            Github:
+            <a href="https://github.com/RussellMorryson" style="color: white"> Russell Morryson </a>
+        </h5>
+    </footer>
+</html>

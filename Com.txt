@@ -1,0 +1,8 @@
+django-admin startproject recipe_book
+
+python manage.py runserver
+//python manage.py runserver 8080
+//python manage.py runserver 0.0.0.0:8080
+
+python manage.py startapp users
+python manage.py startapp recepts
