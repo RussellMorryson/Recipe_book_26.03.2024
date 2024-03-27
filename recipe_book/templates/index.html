@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
         <script src="{% static 'js/script.js' %}"></script>
-       
         <title> Книга рецептов </title>
     </head>
 
@@ -66,25 +65,7 @@
 
         <div class="content">
             {% block content %}
-            {% endblock %}
-
-                {% for key, value in recepts.items %}
-                    <div class="rec">
-                        <div class="rec_main">
-                            <h3><b>{{ value.name }}</b></h3>
-                            <p> {{ value.description }} </p>
-                            <p> Порядок действий: {{ value.steps }} </p>
-                            <p> Ингредиенты: {{ value.steps }} </p>
-                            <p> Время выполнения: {{ value.time }} </p>
-                            <p> Автор: {{ value.author }}</p>                            
-                        </div>
-
-                        <div class="rec_img">
-                            <img src="{{ value.image.url }}" alt="Uploaded Image">
-                        </div>
-                    </div>
-                {% endfor %}
-
+            {% endblock %}            
         </div>
     </body>
     <footer>
@@ -92,5 +73,5 @@
             Github:
             <a href="https://github.com/RussellMorryson" style="color: white"> Russell Morryson </a>
         </h5>
-    </footer>
+    <footer>
 </html>

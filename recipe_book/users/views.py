@@ -1,14 +1,9 @@
 #import os
 from django.shortcuts import redirect, render
-from .forms import LoginUserForm, CreateUserForm#, UploadFile
+from .forms import LoginUserForm, CreateUserForm
 from django.contrib.auth import authenticate, login, logout
-#from django.core.files.storage import FileSystemStorage
-
-username = ''
-email = ''
 
 def login_user(request):
-    global username, email
     if request.method == 'POST':
         form = LoginUserForm(request.POST)
         if form.is_valid():
@@ -16,25 +11,20 @@ def login_user(request):
             user = authenticate(request, username=cd['username'], password=cd['password'])
             if user and user.is_active:
                 login(request, user)
-                pro = redirect('login')
-                username = str(user.get_username())
-                pro.set_cookie('username', username)
-                pro.set_cookie('email', email)
+                pro = redirect('index')
+                pro.set_cookie('username', str(user.get_username()))
                 return pro
     else:
         form = LoginUserForm()
     return render(request, 'users/login.html', {'form': form})
 
 def logout_user(request):
-    global username, email
-    username = ''
-    email = ''
+    response = redirect('index')
+    response.delete_cookie('username')
     logout(request)
-    form = LoginUserForm()
-    return render(request, 'users/login.html', {'form': form})
+    return response
 
 def regist_user(request):
-    global username
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():

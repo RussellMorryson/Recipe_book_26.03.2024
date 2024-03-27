@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 class Recept(models.Model):
     name = models.CharField(max_length=300)
     description = models.CharField(max_length=1000)
-    steps = models.CharField(max_length=4000)
-    time = models.TimeField()
-    image = models.ImageField(upload_to='products/')
+    steps = models.CharField(max_length=4000)    
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     ingredients = models.CharField(max_length=1000)
+    time = models.CharField(max_length=10)    
+    image = models.ImageField(upload_to='uploads/')
+    category = models.CharField(max_length=50)
 
     def __str__(self):
         return f'Name: {self.name}, author: {self.author}'
