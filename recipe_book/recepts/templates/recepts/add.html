@@ -5,25 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<h1>Заполните форму для добавления рецепта</h1><br><br>
+<h1>Заполните форму, чтобы добавить рецепт</h1>
 
 <form action="{% url 'add' %}" method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit" 
-        style="border-radius: 15px;
-            background-color: green; 
-            color: white;
-            width: 160px;
-            height: 30px;
-            font-size: medium;">Добавить рецепт</button>
+    <div class="add_form">
+        {{ form.as_p }}
+        <br><br>
+        <button type="submit">Добавить рецепт</button>
+    </div>
+    <br><br><br><br><br><br>
 </form>
-<br>
-
-<button style="border-radius: 15px; background-color: green; width: 100px; height: 25px;">
-    <a href = "{% url 'index' %}" style="color: white; text-decoration: none;">Главная</a>
-</button>
-<br><br><br><br>
 {% endblock %}

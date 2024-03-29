@@ -13,7 +13,7 @@
 
     <body>
         <header> 
-            <h3 style="margin-top: 52px; margin-right: 10px; ">Категории </h3>
+            <h3>Категории</h3>
             <div class="dropdown"> <!--https://www.schoolsw3.com/howto/howto_js_dropdown.php-->
                 <button onclick="Categories()" class="dropbtn">| | |</button>
                 <div id="categories" class="categories-content">
@@ -29,11 +29,12 @@
                   <a href="{% url 'cocktail' %}">Коктейли</a>
                 </div>
             </div>
-            <div class="logo" style="text-align: center;">
-                <h1 style="size: 24px">Книга рецептов</h1>
-                <h5> Recipe book</h5>
+            <div class="logo">                
+                <a href="{% url 'index' %}">
+                    Книга рецептов
+                    <h5> Recipe book</h5>
+                </a>
             </div>
-
             {% if username == '' or username == None %}
                 <div class = "login">
                     <form action="{% url 'login_user' %}">
@@ -65,26 +66,29 @@
         </header>
 
         <div class="content">
-            {% block content %}
-            {% endblock %}
-
-                {% for key, value in recepts.items %}
-                    <div class="rec">
-                        <div class="rec_main">
-                            <h3><b>{{ value.name }}</b></h3>
-                            <p> {{ value.description }} </p>
-                            <p> Порядок действий: {{ value.steps }} </p>
-                            <p> Ингредиенты: {{ value.steps }} </p>
-                            <p> Время выполнения: {{ value.time }} </p>
-                            <p> Автор: {{ value.author }}</p>                            
-                        </div>
-
-                        <div class="rec_img">
-                            <img src="{{ value.image.url }}" alt="Uploaded Image">
-                        </div>
+            {% for key, value in recepts.items %}
+            <div class="rec">
+                <div class="rec_main">
+                    <h2><b>{{ value.name }}</b></h2>
+                    <p> {{ value.description }} </p>
+                    <!--p> Порядок действий: {{ value.steps }} </p>
+                    <p> Ингредиенты: {{ value.steps }} </p-->
+                    <p> Время выполнения: {{ value.time }} </p>
+                    <p> Автор: {{ value.author }}</p>
+                    <div class = "more"> 
+                            <input type="submit" value="Подробнее">                       
+                     
+                            <!--{% csrf_token %}-->
+                            
+             
                     </div>
-                {% endfor %}
 
+                </div>
+                <div class="rec_img">
+                    <img src="{{ value.image.url }}" alt="{{ value.image }}" style="width: 200px; height: 200px;">
+                </div><br>
+            </div>
+            {% endfor %}
         </div>
     </body>
     <footer>

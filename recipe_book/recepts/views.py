@@ -30,8 +30,8 @@ def add(request):
             author = User.objects.filter(username=request.COOKIES.get('username')).first()
             ingredients = form.cleaned_data['ingredients']
 
-            fs = FileSystemStorage()
-            fs.save(image.name, image)
+           # fs = FileSystemStorage()
+            #fs.save(image.name, image)
 
             recept = Recept(name=name, 
                             description=description, 
